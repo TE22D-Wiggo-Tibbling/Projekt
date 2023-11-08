@@ -22,7 +22,10 @@ public class playerMovement : MonoBehaviour
     LayerMask groundLayer;
 
     [SerializeField] 
-    float health = 3.0f
+    float health = 3.0f;
+
+      [SerializeField]
+    Transform slag;
 
     bool mayJump = true;
 
@@ -36,8 +39,6 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(health);
-
 
         float moveX = Input.GetAxisRaw("Horizontal");
 
@@ -69,19 +70,37 @@ public class playerMovement : MonoBehaviour
 
       
     }
+
+
   private void OnTriggerEnter2D(Collider2D other) {
              if (other.gameObject.tag == "enemy")
         {
             health--;
+            if(health<1){
+                  Destroy(this.gameObject);
+            }
         }
        
         }
 
+
+
     void OnDrawGizmos()
     {
+        // ____________________________________________________________________________________________
+        // -----------------------------------hop Gizmo------------------------------------------------
+        // ____________________________________________________________________________________________
+
         Gizmos.color = Color.green;
         Vector3 size = MakeGroundcheckSize();
         Gizmos.DrawWireCube(groundCheck.position, size);
+
+        // ____________________________________________________________________________________________
+        // -----------------------------------slå Gizmo------------------------------------------------
+        // ____________________________________________________________________________________________
+
+         Gizmos.DrawWireCube(slag.position, size);
+         Gizmos.
 
     }
 
