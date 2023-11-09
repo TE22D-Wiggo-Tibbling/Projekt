@@ -100,7 +100,7 @@ public class playerMovement : MonoBehaviour
         // ____________________________________________________________________________________________
 
          Gizmos.DrawWireCube(slag.position, size);
-         Gizmos.
+        
 
     }
 
