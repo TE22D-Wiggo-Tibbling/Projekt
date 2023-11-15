@@ -23,6 +23,8 @@ public class jumper : MonoBehaviour
     float health = 3.0f;
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +58,7 @@ public class jumper : MonoBehaviour
       
     }
 
-     private Vector3 MakeGroundcheckSize() => new Vector3(groundRadius, groundRadius);
+     public Vector3 MakeGroundcheckSize() => new Vector3(groundRadius, groundRadius);
 
        private void OnTriggerEnter2D(Collider2D other) {
              if (other.gameObject.tag == "enemy")
