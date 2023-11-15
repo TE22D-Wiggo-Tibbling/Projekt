@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -33,6 +34,9 @@ public class playerMovement : MonoBehaviour
   [SerializeField]
   int dashtimeNeed = 10;
   int dashTimeGone = 1000000;
+  [SerializeField]
+  float dashCooldown;
+
 
 
 
@@ -89,15 +93,15 @@ public class playerMovement : MonoBehaviour
 
 
     dashTimeGone++;
-    if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded == true)
+    if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded == true&& dashTimeGone>dashtimeNeed+dashCooldown)
     {
       dashTimeGone = 0;
       transform.Translate(mouse.normalized * dash);
-
+      GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(0, 204, 102);
     }
     if (dashTimeGone == dashtimeNeed)
     {
-
+GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(255,255,255);
       transform.Translate(-mouse.normalized * dash);
     }
 
