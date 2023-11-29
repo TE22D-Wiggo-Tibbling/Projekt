@@ -13,8 +13,12 @@ public class block : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyUp(KeyCode.Mouse1)){
+
+        GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.white;
+        }
         if(Input.GetKeyDown(KeyCode.Mouse1)){
-            GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(0, 204, 102);
+            GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.green;
         }
         // else{
         //                 GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(255, 255, 255);
