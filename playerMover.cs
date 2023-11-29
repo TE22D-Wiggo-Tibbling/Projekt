@@ -92,18 +92,18 @@ public class playerMovement : MonoBehaviour
     }
 
 
-    dashTimeGone++;
-    if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded == true&& dashTimeGone>dashtimeNeed+dashCooldown)
-    {
-      dashTimeGone = 0;
-      transform.Translate(mouse.normalized * dash);
-      GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(0, 204, 102);
-    }
-    if (dashTimeGone == dashtimeNeed)
-    {
-GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(255,255,255);
-      transform.Translate(-mouse.normalized * dash);
-    }
+//     dashTimeGone++;
+//     if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded == true&& dashTimeGone>dashtimeNeed+dashCooldown)
+//     {
+//       dashTimeGone = 0;
+//       transform.Translate(mouse.normalized * dash);
+//       GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(0, 204, 102);
+//     }
+//     if (dashTimeGone == dashtimeNeed)
+//     {
+// GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(255,255,255);
+//       transform.Translate(-mouse.normalized * dash);
+//     }
 
     // Debug.Log(Input.mousePosition);
     //     // Debug.Log(mouse.normalized);

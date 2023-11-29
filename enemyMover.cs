@@ -20,6 +20,9 @@ public class enemyMover : MonoBehaviour
     [SerializeField]
     GameObject player;
 
+    float tillbaka;
+
+
     Vector2 slagRiktning = new Vector2();
     // Start is called before the first frame update
     void Start()
@@ -56,6 +59,7 @@ public class enemyMover : MonoBehaviour
         {
             this.gameObject.GetComponent<Renderer>().material.color = Color.red;
             slagTimer += Time.deltaTime;
+            tillbaka += Time.deltaTime;
         }
         else
         {
@@ -68,19 +72,22 @@ public class enemyMover : MonoBehaviour
         // ------------------------------------------------------------------------------------
         slagRiktning.x = this.gameObject.transform.position.x - player.transform.position.x;
 
-        if (player.transform.position.x < this.gameObject.transform.position.x + 2 && player.transform.position.x > this.gameObject.transform.position.x - 2 && slagTimer > timeNeded && slagTimer < timeNeded + 0.1)
+        if (player.transform.position.x < this.gameObject.transform.position.x + 2 && player.transform.position.x > this.gameObject.transform.position.x - 2 && slagTimer > timeNeded && slagTimer < timeNeded + 0.01)
         {
             this.gameObject.GetComponent<Renderer>().material.color = Color.green;
 
 
-            transform.Translate(-slagRiktning.normalized * 2,0);
-            if (slagTimer > timeNeded + 1)
-            {
-
-                transform.Translate(slagRiktning.normalized * 2);
-                slagTimer = 0;
-            }
+            transform.Translate(-slagRiktning.normalized);
 
         }
+        if (tillbaka > timeNeded + 0.1)
+        {
+
+            slagTimer = 0;
+            tillbaka = 0;
+            transform.Translate(slagRiktning.normalized);
+        }
+
+
     }
 }
