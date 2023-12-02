@@ -22,6 +22,9 @@ public class enemyMover : MonoBehaviour
 
     float tillbaka;
 
+    [SerializeField]
+    float Hp = 5;
+
 
     Vector2 slagRiktning = new Vector2();
     // Start is called before the first frame update
@@ -88,6 +91,18 @@ public class enemyMover : MonoBehaviour
             transform.Translate(slagRiktning.normalized);
         }
 
+        if (Hp==0)
+        {
+            Destroy(this.gameObject);
+        }
 
+
+    }
+
+     private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "playerAttack"){
+            Hp--;
+            Debug.Log("höh");
+        }
     }
 }

@@ -239,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 162802402}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.6527, y: 1.5, z: 0}
+  m_LocalPosition: {x: -5.31, y: 0.07, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -261,6 +261,7 @@ MonoBehaviour:
   timeNeded: 5
   speed: 2
   player: {fileID: 1719665207}
+  Hp: 5
 --- !u!50 &162802407
 Rigidbody2D:
   serializedVersion: 4
@@ -580,7 +581,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   groundRadius: 1.3
-  slagPrefab: {fileID: 3632415247867239710, guid: 853b0308d7574fe4abf91371a5db3e39, type: 3}
+  slagPrefab: {fileID: 8910966839963593178, guid: f645fd8722e437242977b0e3eb319b9d, type: 3}
   "sl\xE5": {fileID: 418366280}
 --- !u!50 &811573356
 Rigidbody2D:

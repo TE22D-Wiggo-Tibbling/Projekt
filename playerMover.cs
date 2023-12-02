@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -57,6 +58,10 @@ public class playerMovement : MonoBehaviour
   GameObject slå;
 
 
+float rotation;
+
+
+
   // Start is called before the first frame update
   void Start()
   {
@@ -85,8 +90,8 @@ public class playerMovement : MonoBehaviour
 
 
 
-     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-         Vector3 mouse=new Vector3();
+    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    Vector3 mouse = new Vector3();
     if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
     {
       mouse = new Vector2(Input.mousePosition.x, 0);
@@ -96,12 +101,36 @@ public class playerMovement : MonoBehaviour
       mouse = new Vector2(-Input.mousePosition.x, 0);
     }
 
+  if(mouse.x<0){
+    rotation=180;
+  }
+  else
+  {
+    rotation=0;
+  }
+
+    // if (Input.GetKeyDown(KeyCode.Mouse0) && mouse.x > 0 && isGrounded)
+    // {
+
+    //   Instantiate(slagPrefab, slå.transform.position + mouse.normalized, Quaternion.identity);
+    // }
+    if (Input.GetKeyDown(KeyCode.Mouse0)  && isGrounded)
+    {
+
+      Instantiate(slagPrefab, slå.transform.position + mouse.normalized, Quaternion.Euler(0, rotation, 0));
+    }
 
 
-if(Input.GetKeyDown(KeyCode.Mouse0)){
-            
-    Instantiate(slagPrefab, slå.transform.position+mouse.normalized, Quaternion.identity);
-        }
+
+    if (Input.GetKeyDown(KeyCode.Mouse1) && isGrounded)
+    {
+      GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.green;
+    }
+    if (Input.GetKeyUp(KeyCode.Mouse1) || !isGrounded)
+    {
+
+      GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.white;
+    }
 
 
     //     Vector2 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
