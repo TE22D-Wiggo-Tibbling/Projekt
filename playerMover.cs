@@ -84,9 +84,23 @@ public class playerMovement : MonoBehaviour
 
 
 
-if(Input.GetAxisRaw("fire1")>0){
+
+     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+         Vector3 mouse=new Vector3();
+    if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
+    {
+      mouse = new Vector2(Input.mousePosition.x, 0);
+    }
+    else
+    {
+      mouse = new Vector2(-Input.mousePosition.x, 0);
+    }
+
+
+
+if(Input.GetKeyDown(KeyCode.Mouse0)){
             
-    Instantiate(slagPrefab, slå.transform.position, Quaternion.identity);
+    Instantiate(slagPrefab, slå.transform.position+mouse.normalized, Quaternion.identity);
         }
 
 
