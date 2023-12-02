@@ -20,10 +20,7 @@ public class block : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse1)){
             GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.green;
         }
-        // else{
-        //                 GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(255, 255, 255);
       
-        // }
         
             
         

@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class TestAddForce : MonoBehaviour
 {
-    Rigidbody fireballBody;
-    public float speed;
-    
     void Start()
     {
-        fireballBody = GetComponent(Rigidbody2D);
-        
-        // AddForce is a function of RigidBody2D
-        fireballBody.AddForce(new Vector2(speed, 0), ForceMode2D.Impulse);
+
     }
     
     // Update is called once per frame

@@ -29,13 +29,13 @@ public class playerMovement : MonoBehaviour
   // [SerializeField]
   // Vector3 dash = new Vector3(1,0,0);
 
-  [SerializeField]
-  float dash = 1.0f;
-  [SerializeField]
-  int dashtimeNeed = 10;
-  int dashTimeGone = 1000000;
-  [SerializeField]
-  float dashCooldown;
+  // [SerializeField]
+  // float dash = 1.0f;
+  // [SerializeField]
+  // int dashtimeNeed = 10;
+  // int dashTimeGone = 1000000;
+  // [SerializeField]
+  // float dashCooldown;
 
 
 
@@ -48,6 +48,13 @@ public class playerMovement : MonoBehaviour
 
   [SerializeField]
   float groundRadius = 0.4f;
+
+
+  [SerializeField]
+  GameObject slagPrefab;
+
+  [SerializeField]
+  GameObject slå;
 
 
   // Start is called before the first frame update
@@ -77,33 +84,37 @@ public class playerMovement : MonoBehaviour
 
 
 
+if(Input.GetAxisRaw("fire1")>0){
+            
+    Instantiate(slagPrefab, slå.transform.position, Quaternion.identity);
+        }
 
 
-    Vector2 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //     Vector2 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-    Vector2 mouse;
-    if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
-    {
-      mouse = new Vector2(Input.mousePosition.x, 0);
-    }
-    else
-    {
-      mouse = new Vector2(-Input.mousePosition.x, 0);
-    }
+    //     Vector2 mouse;
+    //     if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
+    //     {
+    //       mouse = new Vector2(Input.mousePosition.x, 0);
+    //     }
+    //     else
+    //     {
+    //       mouse = new Vector2(-Input.mousePosition.x, 0);
+    //     }
 
 
-//     dashTimeGone++;
-//     if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded == true&& dashTimeGone>dashtimeNeed+dashCooldown)
-//     {
-//       dashTimeGone = 0;
-//       transform.Translate(mouse.normalized * dash);
-//       GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(0, 204, 102);
-//     }
-//     if (dashTimeGone == dashtimeNeed)
-//     {
-// GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(255,255,255);
-//       transform.Translate(-mouse.normalized * dash);
-//     }
+    //     dashTimeGone++;
+    //     if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded == true&& dashTimeGone>dashtimeNeed+dashCooldown)
+    //     {
+    //       dashTimeGone = 0;
+    //       transform.Translate(mouse.normalized * dash);
+    //       GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(0, 204, 102);
+    //     }
+    //     if (dashTimeGone == dashtimeNeed)
+    //     {
+    // GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(255,255,255);
+    //       transform.Translate(-mouse.normalized * dash);
+    //     }
 
     // Debug.Log(Input.mousePosition);
     //     // Debug.Log(mouse.normalized);
@@ -117,21 +128,7 @@ public class playerMovement : MonoBehaviour
 
 
 
-  // void OnDrawGizmos()
-  // {
-  //     // ____________________________________________________________________________________________
-  //     // -----------------------------------hop Gizmo------------------------------------------------
-  //     // ____________________________________________________________________________________________
 
-  //     Gizmos.color = Color.green;
-  //     Vector3 size = MakeGroundcheckSize();
-  //     Gizmos.DrawWireCube(groundCheck.position, size);
-
-  //     // ____________________________________________________________________________________________
-  //     // -----------------------------------slå Gizmo------------------------------------------------
-  //     // ____________________________________________________________________________________________
-
-  //      Gizmos.DrawWireCube(slag.position, size);
 
 
   // }
