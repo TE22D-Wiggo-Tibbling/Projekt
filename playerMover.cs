@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -61,6 +62,7 @@ public class playerMovement : MonoBehaviour
 float rotation;
 
 
+  static public Vector3 mouse = new Vector3();
 
   // Start is called before the first frame update
   void Start()
@@ -91,7 +93,6 @@ float rotation;
 
 
     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    Vector3 mouse = new Vector3();
     if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
     {
       mouse = new Vector2(Input.mousePosition.x, 0);

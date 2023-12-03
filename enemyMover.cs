@@ -20,13 +20,32 @@ public class enemyMover : MonoBehaviour
     [SerializeField]
     GameObject player;
 
-    float tillbaka;
+
 
     [SerializeField]
-    float Hp = 5;
+    public static float Hp = 5;
+
+    // [SerializeField]
+    float reach = 1.5f;
 
 
-    Vector2 slagRiktning = new Vector2();
+
+    [SerializeField]
+    GameObject slagPrefab;
+
+    [SerializeField]
+    GameObject slå;
+
+    float rotation;
+
+
+
+
+
+
+
+
+    public static Vector3 slagRiktning = new Vector3();
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +59,7 @@ public class enemyMover : MonoBehaviour
         //------------------------------------------------------------------------------
         // --------------------------movement-------------------------------------------
         // -----------------------------------------------------------------------------
-        if (this.gameObject.transform.position.x < player.transform.position.x - 2)
+        if (this.gameObject.transform.position.x < player.transform.position.x - reach)
         {
             float moveX = 1;
 
@@ -49,7 +68,7 @@ public class enemyMover : MonoBehaviour
             transform.Translate(movementX * speed * Time.deltaTime);
         }
 
-        if (this.gameObject.transform.position.x > player.transform.position.x + 2)
+        if (this.gameObject.transform.position.x > player.transform.position.x + reach)
         {
             float moveX = -1;
 
@@ -62,7 +81,7 @@ public class enemyMover : MonoBehaviour
         {
             this.gameObject.GetComponent<Renderer>().material.color = Color.red;
             slagTimer += Time.deltaTime;
-            tillbaka += Time.deltaTime;
+
         }
         else
         {
@@ -73,25 +92,33 @@ public class enemyMover : MonoBehaviour
         // ------------------------------------------------------------------------------------
         // -------------------slag-------------------------------------------------------------
         // ------------------------------------------------------------------------------------
-        slagRiktning.x = this.gameObject.transform.position.x - player.transform.position.x;
+        slagRiktning = new Vector2(player.transform.position.x - this.gameObject.transform.position.x, 0);
 
-        if (player.transform.position.x < this.gameObject.transform.position.x + 2 && player.transform.position.x > this.gameObject.transform.position.x - 2 && slagTimer > timeNeded && slagTimer < timeNeded + 0.01)
+        if (slagRiktning.x < 0)
+        {
+            rotation = 180;
+        }
+        else
+        {
+            rotation = 0;
+        }
+
+        if (player.transform.position.x < this.gameObject.transform.position.x + reach && player.transform.position.x > this.gameObject.transform.position.x - reach && slagTimer > timeNeded)
         {
             this.gameObject.GetComponent<Renderer>().material.color = Color.green;
 
-
-            transform.Translate(-slagRiktning.normalized);
-
-        }
-        if (tillbaka > timeNeded + 0.1)
-        {
+            Instantiate(slagPrefab, slå.transform.position + slagRiktning.normalized * reach, Quaternion.Euler(0, rotation, 0));
+            // transform.Translate(-slagRiktning.normalized);
 
             slagTimer = 0;
-            tillbaka = 0;
-            transform.Translate(slagRiktning.normalized);
         }
 
-        if (Hp==0)
+
+       ;
+        // transform.Translate(slagRiktning.normalized);
+
+
+        if (Hp == 0)
         {
             Destroy(this.gameObject);
         }
@@ -99,10 +126,13 @@ public class enemyMover : MonoBehaviour
 
     }
 
-     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "playerAttack"){
-            Hp--;
-            Debug.Log("höh");
-        }
-    }
+    //  private void OnTriggerEnter2D(Collider2D other) {
+    //     if (other.gameObject.tag == "playerAttack"){
+    //         Hp--;
+    //         Debug.Log("höh");
+
+
+
+    //     }
+    // }
 }
