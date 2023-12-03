@@ -15,61 +15,6 @@ public class playerMovement : MonoBehaviour
   float speed = 3;
 
 
-
-  [SerializeField]
-  GameObject body;
-
-
-  //  Vector3 mousePos; = Input.mousePosition;
-
-
-
-
-  [SerializeField]
-  Transform slag;
-
-  // [SerializeField]
-  // Vector3 dash = new Vector3(1,0,0);
-
-  // [SerializeField]
-  // float dash = 1.0f;
-  // [SerializeField]
-  // int dashtimeNeed = 10;
-  // int dashTimeGone = 1000000;
-  // [SerializeField]
-  // float dashCooldown;
-
-
-
-
-  [SerializeField]
-  Transform groundCheck;
-
-  [SerializeField]
-  LayerMask groundLayer;
-
-  [SerializeField]
-  float groundRadius = 0.4f;
-
-
-  [SerializeField]
-  GameObject slagPrefab;
-
-  [SerializeField]
-  GameObject slå;
-
-
-  [SerializeField]
-  GameObject flyttare;
-
-
-  float rotation;
-
- 
-
-
-  static public Vector3 mouse = new Vector3();
-
   // Start is called before the first frame update
   void Start()
   {
@@ -83,17 +28,15 @@ public class playerMovement : MonoBehaviour
 
 
 
-if(!block.blok){
+    if (!block.blok)
+    {
 
-    float moveX = Input.GetAxisRaw("Horizontal");
+      float moveX = Input.GetAxisRaw("Horizontal");
 
-    Vector2 movementX = new Vector2(moveX, 0);
+      Vector2 movementX = new Vector2(moveX, 0);
 
-    transform.Translate(movementX * speed * Time.deltaTime);
-}
-    
-
-
+      transform.Translate(movementX * speed * Time.deltaTime);
+    }
 
 
 
@@ -101,15 +44,6 @@ if(!block.blok){
 
 
 
-
-
-
-
-    // Debug.Log(Input.mousePosition);
-    //     // Debug.Log(mouse.normalized);
-    // Debug.Log(this.gameObject.transform.position.x);
-    // Debug.Log(worldPosition);
-    // Debug.Log(isGrounded);
   }
 
 
@@ -122,7 +56,7 @@ if(!block.blok){
 
   // }
 
-  public Vector3 MakeGroundcheckSize() => new Vector3(groundRadius, groundRadius);
+
 
 
 

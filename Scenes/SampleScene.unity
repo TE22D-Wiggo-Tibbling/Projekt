@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1719665208}
+    - target: {fileID: 348050346396092469, guid: a6fffe4a05ba1a44cbf455f70997b228, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 3107697907799623760, guid: a6fffe4a05ba1a44cbf455f70997b228, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.927025
@@ -452,7 +456,6 @@ GameObject:
   - component: {fileID: 811573357}
   - component: {fileID: 811573356}
   - component: {fileID: 811573355}
-  - component: {fileID: 811573358}
   m_Layer: 0
   m_Name: PlayerMover
   m_TagString: Untagged
@@ -473,16 +476,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  body: {fileID: 1719665207}
-  slag: {fileID: 811573357}
-  groundCheck: {fileID: 1719665208}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  groundRadius: 1.3
-  slagPrefab: {fileID: 8910966839963593178, guid: f645fd8722e437242977b0e3eb319b9d, type: 3}
-  "sl\xE5": {fileID: 418366280}
-  flyttare: {fileID: 0}
 --- !u!50 &811573356
 Rigidbody2D:
   serializedVersion: 4
@@ -526,26 +519,6 @@ Transform:
   - {fileID: 1719665208}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &811573358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811573354}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f91ba4765c8facf4ba550bd2c0b21e6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slag: {fileID: 418366281}
-  groundCheck: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  groundRadius: 0.4
-  slagPrefab: {fileID: 0}
-  sla: {fileID: 0}
 --- !u!1 &1213144458
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +665,7 @@ GameObject:
   - component: {fileID: 1719665213}
   - component: {fileID: 1719665215}
   - component: {fileID: 1719665216}
+  - component: {fileID: 1719665217}
   m_Layer: 0
   m_Name: body
   m_TagString: Body
@@ -882,7 +856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0358507b035e6948bf5fe7243fbf3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 2
   rb2d: {fileID: 1719665211}
   Strength: 16
 --- !u!114 &1719665216
@@ -902,9 +875,21 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  groundRadius: 0.4
   slagPrefab: {fileID: 8910966839963593178, guid: f645fd8722e437242977b0e3eb319b9d, type: 3}
   sla: {fileID: 418366280}
+--- !u!114 &1719665217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719665207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb29e6db266258499ee3a6eebb47079, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHp: 10
 --- !u!1001 &328380652597549627
 PrefabInstance:
   m_ObjectHideFlags: 0

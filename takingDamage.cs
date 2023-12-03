@@ -6,8 +6,7 @@ using UnityEngine;
 public class takingDamage : MonoBehaviour
 {
 
-    [SerializeField]
-    int Hp = 2;
+
 
 
 
@@ -27,26 +26,27 @@ public class takingDamage : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.tag == "EnemyAttack" && this.gameObject.tag == "Body"&&!block.blok)
+        if (other.gameObject.tag == "EnemyAttack" && this.gameObject.tag == "Body" && !block.blok)
         {
-            Hp--;
-            
+            Health.Hp--;
+
 
             Vector2 direction = new Vector2(enemyMover.slagRiktning.normalized.x * 0.3f, 1);
             rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);
             rb2d.AddTorque(enemyMover.slagRiktning.normalized.x * -2, ForceMode2D.Impulse);
+        }
 
-            if(!enemyMover.isGrounded){
-                // dead
-            }
 
+        if (other.gameObject.tag == "enemy" && this.gameObject.tag == "Body" && !block.blok && !enemyMover.isGrounded)
+        {
+            Health.Hp = 0;
         }
 
 
         if (other.gameObject.tag == "playerAttack" && this.gameObject.tag == "enemy")
         {
             enemyMover.Hp--;
-            
+
 
             Vector2 direction = new Vector2(slå.mouse.normalized.x, 0);
             rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);

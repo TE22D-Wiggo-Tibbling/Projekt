@@ -20,16 +20,13 @@ public class slå : MonoBehaviour
   [SerializeField]
   LayerMask groundLayer;
 
-  [SerializeField]
-  float groundRadius = 0.4f;
+
 
 
   [SerializeField]
   GameObject slagPrefab;
 
   static public Vector3 mouse = new Vector3();
-
-
 
   [SerializeField]
   GameObject sla;
@@ -63,11 +60,11 @@ public class slå : MonoBehaviour
       rotation = 0;
     }
 
-   
 
-    
 
-    
+
+
+
 
     if (Input.GetKeyDown(KeyCode.Mouse0) && jumper.isGrounded)
     {
@@ -79,6 +76,8 @@ public class slå : MonoBehaviour
 
   void OnDrawGizmos()
   {
+
+
     Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     Vector3 mouse = new Vector3();
     if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
@@ -91,11 +90,12 @@ public class slå : MonoBehaviour
     }
     Vector3 hit = new Vector3(slag.position.x + mouse.normalized.x, slag.position.y);
     Gizmos.color = Color.green;
-    
-    
+
+
+
 
   }
 
-  
+
 
 }

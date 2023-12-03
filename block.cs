@@ -15,7 +15,7 @@ public class block : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.Mouse1) && jumper.isGrounded)
         {
             GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.green;

@@ -2,30 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class attack : MonoBehaviour
+public class Health : MonoBehaviour
 {
 
     [SerializeField]
-    float timeExist = 10;
+    int MaxHp = 10;
+    public static int Hp;
 
-    [SerializeField]
-    float timeGone = 0;
+    public static bool alive;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        Hp = MaxHp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeGone += Time.deltaTime;
-        if (timeGone > timeExist)
+        if (Hp < 0)
         {
-            Destroy(this.gameObject);
+            alive = false;
+
         }
     }
-
-
-
 }

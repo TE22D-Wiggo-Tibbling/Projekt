@@ -5,7 +5,7 @@ using UnityEngine;
 public class dash : MonoBehaviour
 {
 
-   public Vector3 moveDirection;
+    public Vector3 moveDirection;
 
     public const float maxDashTime = 1.0f;
     public float dashDistance = 10;
@@ -14,7 +14,7 @@ public class dash : MonoBehaviour
     float dashSpeed = 6;
     CharacterController controller;
 
-    
+
 
     private void Awake()
     {
@@ -22,12 +22,13 @@ public class dash : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (Input.GetButtonDown("Fire2")) //Right mouse button
         {
-            currentDashTime = 0;                
+            currentDashTime = 0;
         }
-        if(currentDashTime < maxDashTime)
+        if (currentDashTime < maxDashTime)
         {
             moveDirection = transform.forward * dashDistance;
             currentDashTime += dashStoppingSpeed;
@@ -37,6 +38,6 @@ public class dash : MonoBehaviour
             moveDirection = Vector3.zero;
         }
         controller.Move(moveDirection * Time.deltaTime * dashSpeed);
-	}
+    }
 
 }

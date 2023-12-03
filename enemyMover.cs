@@ -66,56 +66,57 @@ public class enemyMover : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapBox(this.gameObject.transform.position, size, 0, groundLayer);
 
-if(isGrounded){
-
-        //------------------------------------------------------------------------------
-        // --------------------------movement-------------------------------------------
-        // -----------------------------------------------------------------------------
-        if (this.gameObject.transform.position.x < player.transform.position.x - reach)
-        {
-            float moveX = 1;
-
-            Vector2 movementX = new Vector2(moveX, 0);
-
-            transform.Translate(movementX * speed * Time.deltaTime);
-        }
-
-        if (this.gameObject.transform.position.x > player.transform.position.x + reach)
-        {
-            float moveX = -1;
-
-            Vector2 movementX = new Vector2(moveX, 0);
-
-            transform.Translate(movementX * speed * Time.deltaTime);
-        }
-
-        if (player.transform.position.x < this.gameObject.transform.position.x + reach && player.transform.position.x > this.gameObject.transform.position.x - reach)
+        if (isGrounded)
         {
 
-            slagTimer += Time.deltaTime;
+            //------------------------------------------------------------------------------
+            // --------------------------movement-------------------------------------------
+            // -----------------------------------------------------------------------------
+            if (this.gameObject.transform.position.x < player.transform.position.x - reach)
+            {
+                float moveX = 1;
 
+                Vector2 movementX = new Vector2(moveX, 0);
+
+                transform.Translate(movementX * speed * Time.deltaTime);
+            }
+
+            if (this.gameObject.transform.position.x > player.transform.position.x + reach)
+            {
+                float moveX = -1;
+
+                Vector2 movementX = new Vector2(moveX, 0);
+
+                transform.Translate(movementX * speed * Time.deltaTime);
+            }
+
+            if (player.transform.position.x < this.gameObject.transform.position.x + reach && player.transform.position.x > this.gameObject.transform.position.x - reach)
+            {
+
+                slagTimer += Time.deltaTime;
+
+            }
+
+
+            // ------------------------------------------------------------------------------------
+            // -------------------slag-------------------------------------------------------------
+            // ------------------------------------------------------------------------------------
+
+
+            slagRiktning = new Vector2(player.transform.position.x - this.gameObject.transform.position.x, 0);
+
+
+
+            if (player.transform.position.x < this.gameObject.transform.position.x + reach && player.transform.position.x > this.gameObject.transform.position.x - reach && slagTimer > timeNeded)
+            {
+                this.gameObject.GetComponent<Renderer>().material.color = Color.green;
+
+                StartCoroutine(Slag());
+                slagTimer = 0;
+                timeNeded = Random.Range(0, 3);
+
+            }
         }
-
-
-        // ------------------------------------------------------------------------------------
-        // -------------------slag-------------------------------------------------------------
-        // ------------------------------------------------------------------------------------
-
-
-        slagRiktning = new Vector2(player.transform.position.x - this.gameObject.transform.position.x, 0);
-
-
-
-        if (player.transform.position.x < this.gameObject.transform.position.x + reach && player.transform.position.x > this.gameObject.transform.position.x - reach && slagTimer > timeNeded)
-        {
-            this.gameObject.GetComponent<Renderer>().material.color = Color.green;
-
-            StartCoroutine(Slag());
-            slagTimer = 0;
-            timeNeded = Random.Range(0, 3);
-
-        }
-}
 
 
         Debug.Log(timeNeded);
