@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class enemyMover : MonoBehaviour
 {
@@ -45,16 +46,27 @@ public class enemyMover : MonoBehaviour
 
 
     public static Vector3 slagRiktning = new Vector3();
+
+
+    [SerializeField]
+    LayerMask groundLayer;
+
+    Vector2 size = new Vector2(1.5f, 1.5f);
+
+    public static bool isGrounded;
     // Start is called before the first frame update
     void Start()
     {
         Hp = Random.Range(10, 50);
-        timeNeded = Random.Range(3, 7);
+        timeNeded = Random.Range(0, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics2D.OverlapBox(this.gameObject.transform.position, size, 0, groundLayer);
+
+if(isGrounded){
 
         //------------------------------------------------------------------------------
         // --------------------------movement-------------------------------------------
@@ -89,7 +101,7 @@ public class enemyMover : MonoBehaviour
         // -------------------slag-------------------------------------------------------------
         // ------------------------------------------------------------------------------------
 
-        
+
         slagRiktning = new Vector2(player.transform.position.x - this.gameObject.transform.position.x, 0);
 
 
@@ -100,21 +112,24 @@ public class enemyMover : MonoBehaviour
 
             StartCoroutine(Slag());
             slagTimer = 0;
-            timeNeded = Random.Range(1, 6);
+            timeNeded = Random.Range(0, 3);
 
         }
+}
 
 
         Debug.Log(timeNeded);
 
 
-
         if (Hp == 0)
         {
-            Destroy(this.gameObject);
+            // --------------------------------------------------------------------------------------------
+            // -----------------------------------------temporärt------------------------------------------
+            // --------------------------------------------------------------------------------------------
+            this.gameObject.transform.position = new Vector2(Random.Range(-6, 6), 20.0f);
+            Hp = Random.Range(10, 50);
         }
-
-
+        Debug.Log(isGrounded);
     }
 
     IEnumerator Slag()

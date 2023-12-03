@@ -36,6 +36,10 @@ public class takingDamage : MonoBehaviour
             rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);
             rb2d.AddTorque(enemyMover.slagRiktning.normalized.x * -2, ForceMode2D.Impulse);
 
+            if(!enemyMover.isGrounded){
+                // dead
+            }
+
         }
 
 
