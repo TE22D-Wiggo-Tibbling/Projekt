@@ -23,7 +23,7 @@ public class jumper : MonoBehaviour
     float health = 3.0f;
 
 
-
+  public static bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class jumper : MonoBehaviour
     {
                 // bool isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
         Vector3 size = MakeGroundcheckSize();
-        bool isGrounded = Physics2D.OverlapBox(groundCheck.position, size, 0,groundLayer);
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, size, 0,groundLayer);
 
 
         if (Input.GetAxisRaw("Jump") > 0 && mayJump == true && isGrounded == true)

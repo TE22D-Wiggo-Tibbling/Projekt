@@ -8,26 +8,43 @@ using UnityEngine;
 public class slå : MonoBehaviour
 {
 
-    [SerializeField]
-    Transform slag;
+  [SerializeField]
+  Transform slag;
+
+  float rotation;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  [SerializeField]
+  GameObject groundCheck;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  [SerializeField]
+  LayerMask groundLayer;
 
-    void OnDrawGizmos()
-    {
-         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-         Vector3 mouse=new Vector3();
+  [SerializeField]
+  float groundRadius = 0.4f;
+
+
+  [SerializeField]
+  GameObject slagPrefab;
+
+  static public Vector3 mouse = new Vector3();
+
+
+
+  [SerializeField]
+  GameObject sla;
+  // Start is called before the first frame update
+  void Start()
+  {
+
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+
+    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
     if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
     {
       mouse = new Vector2(Input.mousePosition.x, 0);
@@ -36,13 +53,49 @@ public class slå : MonoBehaviour
     {
       mouse = new Vector2(-Input.mousePosition.x, 0);
     }
-    Vector3 hit = new Vector3(slag.position.x+mouse.normalized.x,slag.position.y);
-        Gizmos.color = Color.green;
-        Vector3 size = MakeGroundcheckSize();
-        Gizmos.DrawWireCube(hit, size);
-       
+
+    if (mouse.x < 0)
+    {
+      rotation = 180;
+    }
+    else
+    {
+      rotation = 0;
     }
 
-    private Vector3 MakeGroundcheckSize() => new Vector3(1f, 1f);
+   
+
+    
+
+    
+
+    if (Input.GetKeyDown(KeyCode.Mouse0) && jumper.isGrounded)
+    {
+
+      Instantiate(slagPrefab, sla.transform.position + mouse.normalized, Quaternion.Euler(0, rotation, 0));
+    }
+
+  }
+
+  void OnDrawGizmos()
+  {
+    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    Vector3 mouse = new Vector3();
+    if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
+    {
+      mouse = new Vector2(Input.mousePosition.x, 0);
+    }
+    else
+    {
+      mouse = new Vector2(-Input.mousePosition.x, 0);
+    }
+    Vector3 hit = new Vector3(slag.position.x + mouse.normalized.x, slag.position.y);
+    Gizmos.color = Color.green;
+    
+    
+
+  }
+
+  
 
 }

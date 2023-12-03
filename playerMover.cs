@@ -59,7 +59,13 @@ public class playerMovement : MonoBehaviour
   GameObject slå;
 
 
-float rotation;
+  [SerializeField]
+  GameObject flyttare;
+
+
+  float rotation;
+
+ 
 
 
   static public Vector3 mouse = new Vector3();
@@ -77,88 +83,27 @@ float rotation;
 
 
 
+if(!block.blok){
 
     float moveX = Input.GetAxisRaw("Horizontal");
 
     Vector2 movementX = new Vector2(moveX, 0);
 
     transform.Translate(movementX * speed * Time.deltaTime);
+}
+    
 
 
 
-    Vector3 size = MakeGroundcheckSize();
-    bool isGrounded = Physics2D.OverlapBox(groundCheck.position, size, 0, groundLayer);
 
 
 
 
-    Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
-    {
-      mouse = new Vector2(Input.mousePosition.x, 0);
-    }
-    else
-    {
-      mouse = new Vector2(-Input.mousePosition.x, 0);
-    }
-
-  if(mouse.x<0){
-    rotation=180;
-  }
-  else
-  {
-    rotation=0;
-  }
-
-    // if (Input.GetKeyDown(KeyCode.Mouse0) && mouse.x > 0 && isGrounded)
-    // {
-
-    //   Instantiate(slagPrefab, slå.transform.position + mouse.normalized, Quaternion.identity);
-    // }
-    if (Input.GetKeyDown(KeyCode.Mouse0)  && isGrounded)
-    {
-
-      Instantiate(slagPrefab, slå.transform.position + mouse.normalized, Quaternion.Euler(0, rotation, 0));
-    }
 
 
 
-    if (Input.GetKeyDown(KeyCode.Mouse1) && isGrounded)
-    {
-      GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.green;
-    }
-    if (Input.GetKeyUp(KeyCode.Mouse1) || !isGrounded)
-    {
-
-      GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.white;
-    }
 
 
-    //     Vector2 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-    //     Vector2 mouse;
-    //     if (worldPosition.x > GameObject.FindGameObjectWithTag("Body").transform.position.x)
-    //     {
-    //       mouse = new Vector2(Input.mousePosition.x, 0);
-    //     }
-    //     else
-    //     {
-    //       mouse = new Vector2(-Input.mousePosition.x, 0);
-    //     }
-
-
-    //     dashTimeGone++;
-    //     if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded == true&& dashTimeGone>dashtimeNeed+dashCooldown)
-    //     {
-    //       dashTimeGone = 0;
-    //       transform.Translate(mouse.normalized * dash);
-    //       GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(0, 204, 102);
-    //     }
-    //     if (dashTimeGone == dashtimeNeed)
-    //     {
-    // GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = new Color(255,255,255);
-    //       transform.Translate(-mouse.normalized * dash);
-    //     }
 
     // Debug.Log(Input.mousePosition);
     //     // Debug.Log(mouse.normalized);

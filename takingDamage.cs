@@ -15,7 +15,7 @@ public class takingDamage : MonoBehaviour
     private Rigidbody2D rb2d;
 
     [SerializeField]
-    private float EnemyStrength = 16, PlayerStrength = 16;
+    private float Strength = 16;
 
 
 
@@ -27,13 +27,13 @@ public class takingDamage : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.tag == "EnemyAttack" && this.gameObject.tag == "Body")
+        if (other.gameObject.tag == "EnemyAttack" && this.gameObject.tag == "Body"&&!block.blok)
         {
             Hp--;
-            Debug.Log("höh");
+            
 
             Vector2 direction = new Vector2(enemyMover.slagRiktning.normalized.x * 0.3f, 1);
-            rb2d.AddForce(direction * EnemyStrength, ForceMode2D.Impulse);
+            rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);
             rb2d.AddTorque(enemyMover.slagRiktning.normalized.x * -2, ForceMode2D.Impulse);
 
         }
@@ -42,10 +42,10 @@ public class takingDamage : MonoBehaviour
         if (other.gameObject.tag == "playerAttack" && this.gameObject.tag == "enemy")
         {
             enemyMover.Hp--;
-            Debug.Log("höh");
+            
 
-            Vector2 direction = new Vector2(playerMovement.mouse.normalized.x, 0);
-            rb2d.AddForce(direction * PlayerStrength, ForceMode2D.Impulse);
+            Vector2 direction = new Vector2(slå.mouse.normalized.x, 0);
+            rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);
 
 
         }

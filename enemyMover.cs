@@ -3,6 +3,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,20 +13,19 @@ public class enemyMover : MonoBehaviour
     [SerializeField]
     float slagTimer = 0;
 
-    [SerializeField]
+
     float timeNeded = 10;
 
     [SerializeField]
     float speed = 5;
     [SerializeField]
-    GameObject player;
+    Transform player;
+
+
 
 
 
     [SerializeField]
-    public static float Hp = 5;
-
-    // [SerializeField]
     float reach = 1.5f;
 
 
@@ -36,20 +36,20 @@ public class enemyMover : MonoBehaviour
     [SerializeField]
     GameObject slå;
 
+
+
     float rotation;
 
 
-
-
-
-
+    public static float Hp;
 
 
     public static Vector3 slagRiktning = new Vector3();
     // Start is called before the first frame update
     void Start()
     {
-
+        Hp = Random.Range(10, 50);
+        timeNeded = Random.Range(3, 7);
     }
 
     // Update is called once per frame
@@ -77,45 +77,36 @@ public class enemyMover : MonoBehaviour
             transform.Translate(movementX * speed * Time.deltaTime);
         }
 
-        if (player.transform.position.x < this.gameObject.transform.position.x + 2 && player.transform.position.x > this.gameObject.transform.position.x - 2)
+        if (player.transform.position.x < this.gameObject.transform.position.x + reach && player.transform.position.x > this.gameObject.transform.position.x - reach)
         {
-            this.gameObject.GetComponent<Renderer>().material.color = Color.red;
+
             slagTimer += Time.deltaTime;
 
-        }
-        else
-        {
-            this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
 
 
         // ------------------------------------------------------------------------------------
         // -------------------slag-------------------------------------------------------------
         // ------------------------------------------------------------------------------------
+
+        
         slagRiktning = new Vector2(player.transform.position.x - this.gameObject.transform.position.x, 0);
 
-        if (slagRiktning.x < 0)
-        {
-            rotation = 180;
-        }
-        else
-        {
-            rotation = 0;
-        }
+
 
         if (player.transform.position.x < this.gameObject.transform.position.x + reach && player.transform.position.x > this.gameObject.transform.position.x - reach && slagTimer > timeNeded)
         {
             this.gameObject.GetComponent<Renderer>().material.color = Color.green;
 
-            Instantiate(slagPrefab, slå.transform.position + slagRiktning.normalized * reach, Quaternion.Euler(0, rotation, 0));
-            // transform.Translate(-slagRiktning.normalized);
-
+            StartCoroutine(Slag());
             slagTimer = 0;
+            timeNeded = Random.Range(1, 6);
+
         }
 
 
-       ;
-        // transform.Translate(slagRiktning.normalized);
+        Debug.Log(timeNeded);
+
 
 
         if (Hp == 0)
@@ -126,13 +117,17 @@ public class enemyMover : MonoBehaviour
 
     }
 
-    //  private void OnTriggerEnter2D(Collider2D other) {
-    //     if (other.gameObject.tag == "playerAttack"){
-    //         Hp--;
-    //         Debug.Log("höh");
+    IEnumerator Slag()
+    {
+
+
+        yield return new WaitForSeconds(0.3f);
+
+        Instantiate(slagPrefab, slå.transform.position + slagRiktning.normalized * 1.7f, Quaternion.Euler(0, rotation, 0));
 
 
 
-    //     }
-    // }
+        this.gameObject.GetComponent<Renderer>().material.color = Color.red;
+
+    }
 }
