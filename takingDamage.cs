@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class takingDamage : MonoBehaviour
@@ -21,12 +22,14 @@ public class takingDamage : MonoBehaviour
 
 
 
-
+    public static string DödsAnledning = "";
 
     void Update()
     {
 
         invincebilityTimmer += Time.deltaTime;
+
+        Debug.Log(takingDamage.DödsAnledning);
     }
 
 
@@ -45,12 +48,15 @@ public class takingDamage : MonoBehaviour
             rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);
             rb2d.AddTorque(enemyMover.slagRiktning.normalized.x * -2, ForceMode2D.Impulse);
             invincebilityTimmer = 0;
+            DödsAnledning = "blev träffad för många gånger";
         }
 
 
-        if (other.gameObject.tag == "enemy" && this.gameObject.tag == "Body" && !block.blok && !enemyMover.isGrounded)
+        if (other.gameObject.tag == "enemy" && this.gameObject.tag == "Body" && !enemyMover.isGrounded)
         {
             Health.Hp = 0;
+            DödsAnledning = "blev krossad";
+            Debug.Log("sus");
         }
 
 
@@ -65,6 +71,19 @@ public class takingDamage : MonoBehaviour
 
         }
     }
+
+
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+
+        if (other.gameObject.tag == "enemy" && this.gameObject.tag == "Body" && !enemyMover.isGrounded)
+        {
+            Health.Hp = 0;
+            DödsAnledning = "blev krossad";
+        }
+    }
+
 
 
 }

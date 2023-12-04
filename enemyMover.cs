@@ -119,7 +119,7 @@ public class enemyMover : MonoBehaviour
         }
 
 
-        Debug.Log(timeNeded);
+        
 
 
         if (Hp == 0)
@@ -131,7 +131,7 @@ public class enemyMover : MonoBehaviour
             Hp = Random.Range(10, 50);
             Points.instance.AddPoint();
         }
-        Debug.Log(isGrounded);
+        
     }
 
     IEnumerator Slag()
