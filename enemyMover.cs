@@ -129,6 +129,7 @@ public class enemyMover : MonoBehaviour
             // --------------------------------------------------------------------------------------------
             this.gameObject.transform.position = new Vector2(Random.Range(-6, 6), 20.0f);
             Hp = Random.Range(10, 50);
+            Points.instance.AddPoint();
         }
         Debug.Log(isGrounded);
     }

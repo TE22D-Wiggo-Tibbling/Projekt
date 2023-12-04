@@ -9,6 +9,9 @@ public class takingDamage : MonoBehaviour
 
 
 
+    float invincebilityTimmer = 0;
+    [SerializeField]
+    float invincebilitymax = 3;
 
     [SerializeField]
     private Rigidbody2D rb2d;
@@ -20,13 +23,20 @@ public class takingDamage : MonoBehaviour
 
 
 
+    void Update()
+    {
 
-    // Start is called before the first frame update
+        invincebilityTimmer += Time.deltaTime;
+    }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.tag == "EnemyAttack" && this.gameObject.tag == "Body" && !block.blok)
+
+
+        if (other.gameObject.tag == "EnemyAttack" && this.gameObject.tag == "Body" && !block.blok && invincebilityTimmer > invincebilitymax)
         {
             Health.Hp--;
 
@@ -34,6 +44,7 @@ public class takingDamage : MonoBehaviour
             Vector2 direction = new Vector2(enemyMover.slagRiktning.normalized.x * 0.3f, 1);
             rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);
             rb2d.AddTorque(enemyMover.slagRiktning.normalized.x * -2, ForceMode2D.Impulse);
+            invincebilityTimmer = 0;
         }
 
 

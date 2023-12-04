@@ -16,12 +16,12 @@ public class block : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && jumper.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.green;
             blok = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1) || !jumper.isGrounded)
+        if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             blok = false;
             GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.white;

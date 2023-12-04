@@ -66,7 +66,7 @@ public class slå : MonoBehaviour
 
 
 
-    if (Input.GetKeyDown(KeyCode.Mouse0) && jumper.isGrounded)
+    if (Input.GetKeyDown(KeyCode.Mouse0) && jumper.isGrounded && !block.blok)
     {
 
       Instantiate(slagPrefab, sla.transform.position + mouse.normalized, Quaternion.Euler(0, rotation, 0));
