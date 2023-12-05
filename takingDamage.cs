@@ -10,9 +10,9 @@ public class takingDamage : MonoBehaviour
 
 
 
-    float invincebilityTimmer = 0;
+    public static float invincebilityTimmer = 0;
     [SerializeField]
-    float invincebilitymax = 3;
+    public static float invincebilitymax = 3;
 
     [SerializeField]
     private Rigidbody2D rb2d;
@@ -48,7 +48,7 @@ public class takingDamage : MonoBehaviour
             rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);
             rb2d.AddTorque(enemyMover.slagRiktning.normalized.x * -2, ForceMode2D.Impulse);
             invincebilityTimmer = 0;
-           Health.healthBar.value=Health.Hp;
+        
             DödsAnledning = "blev träffad för många gånger";
 
             

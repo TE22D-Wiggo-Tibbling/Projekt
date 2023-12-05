@@ -13,18 +13,18 @@ public class Health : MonoBehaviour
 
     public static bool alive;
 
-     [SerializeField]
-   public static Slider healthBar;
+    [SerializeField]
+    Slider healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
         Hp = MaxHp;
 
-               
-        healthBar.maxValue=MaxHp;
-        
-        healthBar.value=Hp;
+
+        healthBar.maxValue = MaxHp;
+
+        healthBar.value = Hp;
 
     }
 
@@ -36,13 +36,26 @@ public class Health : MonoBehaviour
             SceneManager.LoadScene(2);
 
         }
-          if(this.gameObject.transform.position.y<-7){
-      Health.Hp=0;
-      takingDamage.DödsAnledning="tappa för mycket ballans";
-    }
+        if (this.gameObject.transform.position.y < -7)
+        {
+            Health.Hp = 0;
+            takingDamage.DödsAnledning = "tappa för mycket ballans";
+        }
     }
 
-    
-   
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+
+
+        if (other.gameObject.tag == "EnemyAttack" && this.gameObject.tag == "Body" && !block.blok && takingDamage.invincebilityTimmer > takingDamage.invincebilitymax)
+        {
+            healthBar.value = Hp;
+        }
+    }
+
+
+
+
 }
