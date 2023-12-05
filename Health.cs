@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
 
@@ -12,10 +13,19 @@ public class Health : MonoBehaviour
 
     public static bool alive;
 
+     [SerializeField]
+   public static Slider healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
         Hp = MaxHp;
+
+               
+        healthBar.maxValue=MaxHp;
+        
+        healthBar.value=Hp;
+
     }
 
     // Update is called once per frame
@@ -23,7 +33,7 @@ public class Health : MonoBehaviour
     {
         if (Hp == 0)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
 
         }
           if(this.gameObject.transform.position.y<-7){

@@ -59,6 +59,7 @@ public class enemyMover : MonoBehaviour
     {
         Hp = Random.Range(10, 50);
         timeNeded = Random.Range(0, 3);
+         this.gameObject.GetComponent<Renderer>().material.color = Color.red;
     }
 
     // Update is called once per frame

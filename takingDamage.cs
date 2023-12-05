@@ -48,16 +48,13 @@ public class takingDamage : MonoBehaviour
             rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);
             rb2d.AddTorque(enemyMover.slagRiktning.normalized.x * -2, ForceMode2D.Impulse);
             invincebilityTimmer = 0;
+           Health.healthBar.value=Health.Hp;
             DödsAnledning = "blev träffad för många gånger";
+
+            
         }
 
 
-        if (other.gameObject.tag == "enemy" && this.gameObject.tag == "Body" && !enemyMover.isGrounded)
-        {
-            Health.Hp = 0;
-            DödsAnledning = "blev krossad";
-            Debug.Log("sus");
-        }
 
 
         if (other.gameObject.tag == "playerAttack" && this.gameObject.tag == "enemy")
