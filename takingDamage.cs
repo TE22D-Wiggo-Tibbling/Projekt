@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class takingDamage : MonoBehaviour
 {
 
-
+[SerializeField]
+AudioSource Source;
+[SerializeField]
+AudioClip clip;
 
 
     public static float invincebilityTimmer = 0;
@@ -29,7 +33,7 @@ public class takingDamage : MonoBehaviour
 
         invincebilityTimmer += Time.deltaTime;
 
-        Debug.Log(takingDamage.DödsAnledning);
+       
     }
 
 
@@ -48,7 +52,6 @@ public class takingDamage : MonoBehaviour
             rb2d.AddForce(direction * Strength, ForceMode2D.Impulse);
             rb2d.AddTorque(enemyMover.slagRiktning.normalized.x * -2, ForceMode2D.Impulse);
             invincebilityTimmer = 0;
-        
             DödsAnledning = "blev träffad för många gånger";
 
             
@@ -76,6 +79,7 @@ public class takingDamage : MonoBehaviour
 
         if (other.gameObject.tag == "enemy" && this.gameObject.tag == "Body" && !enemyMover.isGrounded)
         {
+            Source.PlayOneShot(clip);
             Health.Hp = 0;
             DödsAnledning = "blev krossad";
         }

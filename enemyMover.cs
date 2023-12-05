@@ -57,7 +57,7 @@ public class enemyMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Hp = Random.Range(10, 50);
+        Hp = Random.Range(10, 25);
         timeNeded = Random.Range(0, 3);
          this.gameObject.GetComponent<Renderer>().material.color = Color.red;
     }
@@ -114,7 +114,7 @@ public class enemyMover : MonoBehaviour
 
                 StartCoroutine(Slag());
                 slagTimer = 0;
-                timeNeded = Random.Range(0, 3);
+                timeNeded = Random.Range(1, 3);
 
             }
         }
@@ -129,7 +129,7 @@ public class enemyMover : MonoBehaviour
             // -----------------------------------------temporärt------------------------------------------
             // --------------------------------------------------------------------------------------------
             this.gameObject.transform.position = new Vector2(Random.Range(-6, 6), 20.0f);
-            Hp = Random.Range(10, 50);
+            Hp = Random.Range(10, 25);
             Points.instance.AddPoint();
         }
         

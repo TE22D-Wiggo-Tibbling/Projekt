@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class block : MonoBehaviour
 {
-
+[SerializeField]
+AudioSource Source;
+[SerializeField]
+AudioClip clip;
     public static bool blok;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +21,7 @@ public class block : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            Source.PlayOneShot(clip);
             GameObject.FindGameObjectWithTag("Body").GetComponent<Renderer>().material.color = Color.green;
             blok = true;
         }

@@ -8,22 +8,19 @@ public class attack : MonoBehaviour
     [SerializeField]
     float timeExist = 10;
 
-    [SerializeField]
-    float timeGone = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+            Destroy(this.gameObject,timeExist);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeGone += Time.deltaTime;
-        if (timeGone > timeExist)
-        {
-            Destroy(this.gameObject);
-        }
+        
+        
     }
 
 

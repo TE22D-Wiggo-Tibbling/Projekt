@@ -31,27 +31,19 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Hp == 0)
-        {
-            SceneManager.LoadScene(2);
 
-        }
+        healthBar.value = Hp;
+        
         if (this.gameObject.transform.position.y < -7)
         {
             Health.Hp = 0;
             takingDamage.DödsAnledning = "tappa för mycket ballans";
         }
-    }
 
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-
-
-
-        if (other.gameObject.tag == "EnemyAttack" && this.gameObject.tag == "Body" && !block.blok && takingDamage.invincebilityTimmer > takingDamage.invincebilitymax)
+        if (Hp == 0)
         {
-            healthBar.value = Hp;
+            SceneManager.LoadScene(2);
+
         }
     }
 
