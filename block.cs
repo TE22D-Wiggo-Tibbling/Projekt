@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class block : MonoBehaviour
 {
-[SerializeField]
-AudioSource Source;
-[SerializeField]
-AudioClip clip;
+    [SerializeField]
+    AudioSource Source;
+    [SerializeField]
+    AudioClip clip;
     public static bool blok;
     // Start is called before the first frame update
     void Start()

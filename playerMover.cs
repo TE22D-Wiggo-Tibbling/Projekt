@@ -38,7 +38,7 @@ public class playerMovement : MonoBehaviour
       transform.Translate(movementX * speed * Time.deltaTime);
     }
 
-  
+
 
 
 

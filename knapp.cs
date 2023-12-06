@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 public class knapp : MonoBehaviour
 {
 
-public void GotoSceneZero(){
-    SceneManager.LoadScene(1);
+    public void GotoSceneZero()
+    {
+        SceneManager.LoadScene(1);
 
-}
+    }
 
 }

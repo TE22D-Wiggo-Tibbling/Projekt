@@ -33,7 +33,7 @@ public class Health : MonoBehaviour
     {
 
         healthBar.value = Hp;
-        
+
         if (this.gameObject.transform.position.y < -7)
         {
             Health.Hp = 0;

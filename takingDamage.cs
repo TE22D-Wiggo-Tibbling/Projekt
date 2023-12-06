@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class takingDamage : MonoBehaviour
 {
 
-[SerializeField]
-AudioSource Source;
-[SerializeField]
-AudioClip clip;
+    [SerializeField]
+    AudioSource Source;
+    [SerializeField]
+    AudioClip clip;
 
 
     public static float invincebilityTimmer = 0;
@@ -33,7 +33,7 @@ AudioClip clip;
 
         invincebilityTimmer += Time.deltaTime;
 
-       
+
     }
 
 
@@ -54,7 +54,7 @@ AudioClip clip;
             invincebilityTimmer = 0;
             DödsAnledning = "blev träffad för många gånger";
 
-            
+
         }
 
 

@@ -59,7 +59,7 @@ public class enemyMover : MonoBehaviour
     {
         Hp = Random.Range(10, 25);
         timeNeded = Random.Range(0, 3);
-         this.gameObject.GetComponent<Renderer>().material.color = Color.red;
+        this.gameObject.GetComponent<Renderer>().material.color = Color.red;
     }
 
     // Update is called once per frame
@@ -120,7 +120,7 @@ public class enemyMover : MonoBehaviour
         }
 
 
-        
+
 
 
         if (Hp == 0)
@@ -132,7 +132,7 @@ public class enemyMover : MonoBehaviour
             Hp = Random.Range(10, 25);
             Points.instance.AddPoint();
         }
-        
+
     }
 
     IEnumerator Slag()
